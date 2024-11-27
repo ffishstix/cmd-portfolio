@@ -43,7 +43,7 @@ https://web.moritz.移动/   disc: wixxer
             <p>full credit goes to <a href="https://projects.bugra.work/console/">bugra.work</a></p>
             <p><br></p>
             <p>C:\Users\fin>ssh guest@fishstix.uk</p>
-            <p>guest@fishstix.uk's password:</p>
+            <p class="inline">guest@fishstix.uk's password:</p><p id="true" class="pass inline"></p>
             <p><br></p>
 			<p id="last-login">Last login:</p>
             <div class="prepend"></div>
@@ -90,7 +90,10 @@ https://web.moritz.移动/   disc: wixxer
         document.addEventListener('DOMContentLoaded', updateLoginTime);
     </script>
 
-	<script src="./assets/app.js"></script>
+
+	<script type="module" src="./assets/app.js"></script>
     <script src="./assets/drag.js"></script>
+    <script type="module" src="./assets/passScript.js"></script>
+
 </body>
 </html>

@@ -4,7 +4,9 @@
   * {
     margin: 0;
   }
-  
+
+
+
   ::-webkit-scrollbar {
     width: 4px;
   }
@@ -101,7 +103,10 @@
     margin-top: 15px;
     margin-bottom: 10px;
   }
-
+  .inline {
+    display: inline-block;
+    margin-right: 10px; /* Adds space between the paragraphs */
+}
 
 .rainbow {
     background: linear-gradient(to right, #16c5fa, #0099ff , #00ff00, #ff3399, #16c5fa);

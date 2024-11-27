@@ -3,6 +3,8 @@ let form = $("#command-form");
 let prepend = $(".prepend");
 let lastCommand = "";
 let delay = 100;
+window.randomPhaseTrue = true;
+import {startEffect} from "./passScript.js";
 $("#browser-info").html(navigator.userAgent);
 function bottom() {
   $(".window").animate({ scrollTop: $(document).height() }, 1);
@@ -62,6 +64,7 @@ let contact =
  prepend.append("<br>-" + input + "..");
   form.trigger("reset");
   setTimeout(function () {
+    const element = document.getElementById("true");
     switch (input) {
       case "ls":
         prepend.append(help);
@@ -86,12 +89,42 @@ let contact =
       case "contact":
         prepend.append(contact);
         break;
+      case "Secret Password":
+        $(".window-inside").css("color", "transparent");
+        $(".commandline").css("color", "transparent");
+        $(".window-inside").addClass("rainbow");
+        $(".commandline").addClass("rainbow");
+        if (element){element.id = " ";}
+        break;
+      case "password found":
+        $(".window-inside").css("color", "");
+        $(".commandline").css("color", "");
+        $(".window-inside").removeClass("rainbow");
+        $(".commandline").removeClass("rainbow");
+        if (element){element.id = "true";}
+        startEffect(true);
+      case "Very Secret Password":  
+        $(".window-inside").css("color", "transparent");
+        $(".commandline").css("color", "transparent");
+        $(".window-inside").addClass("rainbow");
+        $(".commandline").addClass("rainbow");
+        if (element){element.id = " ";}
+        break;
       case "secret password":
         $(".window-inside").css("color", "transparent");
         $(".commandline").css("color", "transparent");
         $(".window-inside").addClass("rainbow");
         $(".commandline").addClass("rainbow");
+        if (element){element.id = " ";}
         break;
+      case "very secret password":  
+        $(".window-inside").css("color", "transparent");
+        $(".commandline").css("color", "transparent");
+        $(".window-inside").addClass("rainbow");
+        $(".commandline").addClass("rainbow");
+        if (element){element.id = " ";}
+        break;
+          
       case "delay 0":
         delay = 0;
         prepend.append("<br>>> Delay set to 100ms");
