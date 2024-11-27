@@ -58,7 +58,7 @@ let help =
 let about = 
   "<p>>> Hi, I'm fin, 16 years old with a passion for c# and learning. I have my own server room where this website is hosted—pretty cool, right? I love tinkering with computers; the first one I got my hands on was when I was 11.\nEver since then i have been exploring and learning as much as possible :) Thanks for visiting!</p>";
 let contact =
-  "<br>>> <a href='mailto:admin@fishstix.uk'>My Email Address: admin@fishstix.ul</a> <br>";
+  "<br>>> My Email Address: <a href='mailto:admin@fishstix.uk'>admin@fishstix.uk</a> <br>please do msg me in discord if you have any suggestions or questions:<a href='https://discord.gg/BgCp6FMxTN'>fish_stix</a>";
  prepend.append("<br>-" + input + "..");
   form.trigger("reset");
   setTimeout(function () {
