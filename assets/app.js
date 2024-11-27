@@ -54,7 +54,7 @@ $(form).submit(function () {
   }
 
 let notfound =
-  "<p>>> The command you entered is not recognized. To see all available commands you can type 'help'.";
+  "<p>>> The command you entered is not recognized. To see all available commands you can type 'ls'.";
 let help =
   "<p>>> On this page, you can use the following commands <br>-about  -> Information About Me<br>-contact  -> contact me<br>-homepage  -> Other cool Page<br>-clear  -> Clears the Page<br>-secret -> a secret ☻<br>-guestbook -> simple guestbook<br>-Up Arrow Key   -> Retrieves the Previous Command You Entered<br>-exit   -> Closes the Tab</p>"
 let about = 
@@ -95,6 +95,7 @@ let contact =
         $(".window-inside").addClass("rainbow");
         $(".commandline").addClass("rainbow");
         if (element){element.id = " ";}
+        startEffect();
         break;
       case "password found":
         $(".window-inside").css("color", "");
@@ -103,12 +104,14 @@ let contact =
         $(".commandline").removeClass("rainbow");
         if (element){element.id = "true";}
         startEffect(true);
+        break;
       case "Very Secret Password":  
         $(".window-inside").css("color", "transparent");
         $(".commandline").css("color", "transparent");
         $(".window-inside").addClass("rainbow");
         $(".commandline").addClass("rainbow");
         if (element){element.id = " ";}
+        startEffect();
         break;
       case "secret password":
         $(".window-inside").css("color", "transparent");
@@ -116,6 +119,7 @@ let contact =
         $(".window-inside").addClass("rainbow");
         $(".commandline").addClass("rainbow");
         if (element){element.id = " ";}
+        startEffect(true);
         break;
       case "very secret password":  
         $(".window-inside").css("color", "transparent");
@@ -123,6 +127,7 @@ let contact =
         $(".window-inside").addClass("rainbow");
         $(".commandline").addClass("rainbow");
         if (element){element.id = " ";}
+        startEffect();
         break;
           
       case "delay 0":
