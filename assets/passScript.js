@@ -25,11 +25,9 @@ function getRandomChar() {
 
 // Function to update the text of elements with class "pass"
 function updatePassText(text) {
-    const passElements = document.getElementsByClassName("pass");
+    const passElements = document.querySelector(".pass");
     passElements.fontSize = 12;
-    for (let element of passElements) {
-        element.textContent = text;
-    }
+    passElements.textContent = text;
 }
 
 // Function to reveal the password one character at a time
@@ -106,7 +104,7 @@ function getRandomString(length) {
 // Function to type and delete text
 function typeAndDeleteEffect() {
     
-    const cycleSpeed = 75;
+    const cycleSpeed = 40;
     const text1 = "password found";
     const text2 = "to disable this type:";
     const text3 = "i dislike rainbows";
@@ -173,6 +171,7 @@ function startEffect(randomisePhase=true) {
     function randomPhase() {
         console.log("here 2");
         var element = document.getElementById("true")
+        
         if (randomisePhase) {
             console.log("here 3");
             ;
