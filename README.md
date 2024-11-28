@@ -8,3 +8,6 @@ It is designed as a truly usable console. Written using jQuery, HTML, CSS.
 
 ### You can click to see the demo
 <a target="_blank" href="https://projects.bugra.work/console/">View Demo</a>
+<a target="_blank" href="https:fishstix.uk">View Demo</a>
+
+# If it doesnt work use <a target="_blank" href="https://projects.bugra.work/console/">The OG</a>
