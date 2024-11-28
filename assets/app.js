@@ -65,9 +65,10 @@ let contact =
   form.trigger("reset");
   setTimeout(function () {
     const element = document.getElementById("true");
-    switch (input) {
+    switch (input.toLowerCase()) {
       case "ls":
         prepend.append(help);
+        break;
       case "help":
         prepend.append(help);
         break;
@@ -89,13 +90,15 @@ let contact =
       case "contact":
         prepend.append(contact);
         break;
-      case "Secret Password":
+      case "secret password":
         $(".window-inside").css("color", "transparent");
         $(".commandline").css("color", "transparent");
         $(".window-inside").addClass("rainbow");
         $(".commandline").addClass("rainbow");
-        if (element){element.id = " ";}
-        startEffect();
+        if (element){element.id = " ";};
+        console.log("Secret Password was selected");
+        console.log(window.randomPhaseTrue);
+        startEffect(randomPhaseTrue);
         break;
       case "password found":
         $(".window-inside").css("color", "");
@@ -103,31 +106,17 @@ let contact =
         $(".window-inside").removeClass("rainbow");
         $(".commandline").removeClass("rainbow");
         if (element){element.id = "true";}
-        startEffect(true);
-        break;
-      case "Very Secret Password":  
-        $(".window-inside").css("color", "transparent");
-        $(".commandline").css("color", "transparent");
-        $(".window-inside").addClass("rainbow");
-        $(".commandline").addClass("rainbow");
-        if (element){element.id = " ";}
-        startEffect();
-        break;
-      case "secret password":
-        $(".window-inside").css("color", "transparent");
-        $(".commandline").css("color", "transparent");
-        $(".window-inside").addClass("rainbow");
-        $(".commandline").addClass("rainbow");
-        if (element){element.id = " ";}
-        startEffect(true);
+        console.log("password foundw as selected");
+        startEffect(randomPhaseTrue);
         break;
       case "very secret password":  
         $(".window-inside").css("color", "transparent");
         $(".commandline").css("color", "transparent");
         $(".window-inside").addClass("rainbow");
         $(".commandline").addClass("rainbow");
+        console.log("very secret password selected");
         if (element){element.id = " ";}
-        startEffect();
+        startEffect(randomPhaseTrue);
         break;
           
       case "delay 0":
