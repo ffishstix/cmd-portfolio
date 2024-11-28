@@ -106,20 +106,17 @@ function getRandomString(length) {
 // Function to type and delete text
 function typeAndDeleteEffect() {
     
-    const cycleSpeed = 100; // Time in milliseconds between each letter, you can adjust this value
+    const cycleSpeed = 75;
     const text1 = "password found";
     const text2 = "to disable this type:";
     const text3 = "password found";
 
-    let outputElements = document.getElementsByClassName("pass"); // Get all elements with class 'pass'
+    let element = document.querySelector('.pass');
 
     // Function to update all elements with the class 'pass'
     function updatePassText(text) {
-        // Iterate over all elements with class 'pass' and update the text
-        Array.from(outputElements).forEach(element => {
             element.style.fontSize = "28px";
             element.textContent = text;
-        });
     }
 
     // Function to type out a string letter by letter
@@ -127,11 +124,11 @@ function typeAndDeleteEffect() {
         let index = 0;
         function typeLetter() {
             if (index < text.length) {
-                updatePassText(text.substring(0, index + 1)); // Update text up to the current letter
+                updatePassText(text.substring(0, index + 1));
                 index++;
                 setTimeout(typeLetter, cycleSpeed);
             } else {
-                callback(); // Call the callback when typing is done
+                callback();
             }
         }
         typeLetter();
@@ -142,11 +139,11 @@ function typeAndDeleteEffect() {
         let index = text.length - 1;
         function deleteLetter() {
             if (index >= 0) {
-                updatePassText(text.substring(0, index)); // Remove the last character
+                updatePassText(text.substring(0, index));
                 index--;
                 setTimeout(deleteLetter, cycleSpeed);
             } else {
-                callback(); // Call the callback when deleting is done
+                callback();
             }
         }
         deleteLetter();
@@ -167,7 +164,7 @@ function typeAndDeleteEffect() {
     });
 }
 
-// Main function to start the effect
+
 function startEffect(randomisePhase=true) {
 
     let randomPhaseTime = 0;
@@ -179,7 +176,7 @@ function startEffect(randomisePhase=true) {
             displayRandomText();
             randomPhaseTime += cycleSpeed;
             if (randomPhaseTime >= randomPhaseDuration) {
-                revealPassword(); // After 5 seconds, start revealing the password
+                revealPassword();
             } else {
                 setTimeout(randomPhase, cycleSpeed);
             }
@@ -189,7 +186,7 @@ function startEffect(randomisePhase=true) {
         }
     }
 
-    randomPhase(); // Start the random phase
+    randomPhase();
 }
 
 // Start the effect when the page loads

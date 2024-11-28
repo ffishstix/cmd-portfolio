@@ -1,0 +1,2 @@
+# Ignore lastDate.txt
+lastDate.txt

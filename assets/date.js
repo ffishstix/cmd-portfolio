@@ -42,8 +42,8 @@ async function getLastLogin() {
   }
   
   async function updateLoginTime() {
-    await getLastLogin(); // Display the last login time
-    await setLastLogin(); // Save the current login time
+    await getLastLogin();
+    await setLastLogin();
   }
   
   updateLoginTime();

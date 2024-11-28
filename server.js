@@ -4,12 +4,12 @@ const path = require('path');
 
 const port = 3000;
 
-// Create the server
+
 http.createServer((req, res) => {
   let filePath = req.url === '/' ? './index.html' : `.${req.url}`;
 
   if (req.url === '/api/getLastLogin') {
-    // Handle GET request to read last login time
+
     fs.readFile('lastDate.txt', 'utf8', (err, data) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -23,7 +23,7 @@ http.createServer((req, res) => {
   }
 
   if (req.url === '/api/setLastLogin' && req.method === 'POST') {
-    // Handle POST request to save current login time
+
     let body = '';
     req.on('data', chunk => {
       body += chunk.toString();
@@ -44,7 +44,7 @@ http.createServer((req, res) => {
     return;
   }
 
-  // Serve static files (HTML, CSS, JS)
+
   const extname = path.extname(filePath);
   let contentType = 'text/html';
   switch (extname) {
