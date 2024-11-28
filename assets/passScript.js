@@ -1,5 +1,6 @@
 // Variables
-const password = "Very: Secret Password";
+const password = "Secret Password";
+
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 -_!$%^&*():"; // Added space
 const randomPhaseDuration = 5000; // 5 seconds of random characters
 const revealDuration = 5000; // 5 seconds of showing the full password
@@ -73,7 +74,7 @@ function revealPassword(temp=false) {
 // Function to scramble the password backward and keep scrambling all previous characters
 function scrambleBackward(temp=false) {
     let scrambledText = password.split(''); // Start with the fully revealed password
-    let index = password.length - 1; // Start scrambling from the last character
+    let index = password.length; // Start scrambling from the last character
 
     function scrambleCharacter() {
         if (index >= 0) {
