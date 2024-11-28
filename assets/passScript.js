@@ -48,10 +48,11 @@ function revealPassword(temp=false) {
                     allCorrect = false;
                     cycleIndexes[i]++; // Increment to the next character in charCycleOrder
                 } else {
-                    correct[i] = true; // Mark the character as correct
+                    correct[i] = true;
+                    allCorrect = true; // Mark the character as correct
                 }
             }
-        }
+        } 
 
         // Update the display with the revealed characters and random ones
         updatePassText(
@@ -61,8 +62,10 @@ function revealPassword(temp=false) {
 
         // If all characters are correct, move on to the next phase
         if (allCorrect) {
+
             setTimeout(() => checkTempAndContinue(temp), revealDuration); // Check temp after reveal duration
         } else {
+
             setTimeout(revealCharacter, cycleSpeed); // Continue revealing the next character
         }
     }
@@ -80,7 +83,7 @@ function scrambleBackward(temp=false) {
             for (let i = index; i < password.length; i++) {
                 scrambledText[i] = getRandomChar(); // Continuously randomize all scrambled characters
             }
-
+            console.log(scrambledText);
             updatePassText(scrambledText.join('')); // Update the display
             index--; // Move to the previous character
 
