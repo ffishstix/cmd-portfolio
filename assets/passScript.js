@@ -40,11 +40,10 @@ function revealPassword() {
     function revealCharacter() {
         // Check if all characters have been revealed correctly
         let allCorrect = true;
-        for (let i = 0; i < password.length-1; i++) {
+        for (let i = 0; i < password.length; i++) {
             if (!correct[i]) {
                 let currentChar = charCycleOrder[cycleIndexes[i]];
                 revealedText[i] = currentChar;
-                console.log("current char: ", currentChar, "\nrevealedText: ", revealedText);
                 // If the character doesn't match the password at this position
                 if (currentChar !== password[i]) {
                     allCorrect = false;
@@ -110,7 +109,7 @@ function typeAndDeleteEffect() {
     const text1 = "password found";
     const text2 = "to disable this type:";
     const text3 = "password found";
-
+    console.log("why am i here");
     let element = document.querySelector('.pass');
 
     // Function to update all elements with the class 'pass'
@@ -164,29 +163,39 @@ function typeAndDeleteEffect() {
     });
 }
 
-
+let count = 10;
 function startEffect(randomisePhase=true) {
-
+    console.log(randomisePhase);
+    console.log("here one");
     let randomPhaseTime = 0;
 
     function randomPhase() {
+        console.log("here 2");
         var element = document.getElementById("true")
         if (randomisePhase) {
-            randomisePhase = false;
+            console.log("here 3");
+            ;
             displayRandomText();
             randomPhaseTime += cycleSpeed;
             if (randomPhaseTime >= randomPhaseDuration) {
                 revealPassword();
+                console.log("here 6");
             } else {
-                setTimeout(randomPhase, cycleSpeed);
+                console.log("here 4");
+                setTimeout(randomPhase(), cycleSpeed);
             }
         }else {
+            console.log("here 5");
             typeAndDeleteEffect();
-            randomisePhase = true;
+            
         }
     }
 
+    setTimeout(revealDuration);
     randomPhase();
+    console.log('here', count++);
+    
+    randomisePhase != randomisePhase;
 }
 
 // Start the effect when the page loads
