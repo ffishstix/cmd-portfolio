@@ -32,7 +32,7 @@ function updatePassText(text) {
 }
 
 // Function to reveal the password one character at a time
-function revealPassword(temp=false) {
+function revealPassword() {
     let revealedText = Array(password.length).fill(""); // Empty array for revealed text
     let cycleIndexes = Array(password.length).fill(0); // Current index in charCycleOrder for each character
     let correct = Array(password.length).fill(false); // Array to track which characters are correct
@@ -40,17 +40,18 @@ function revealPassword(temp=false) {
     function revealCharacter() {
         // Check if all characters have been revealed correctly
         let allCorrect = true;
-        for (let i = 0; i < password.length; i++) {
+        for (let i = 0; i < password.length-1; i++) {
             if (!correct[i]) {
                 let currentChar = charCycleOrder[cycleIndexes[i]];
                 revealedText[i] = currentChar;
+                console.log("current char: ", currentChar, "\nrevealedText: ", revealedText);
                 // If the character doesn't match the password at this position
                 if (currentChar !== password[i]) {
                     allCorrect = false;
                     cycleIndexes[i]++; // Increment to the next character in charCycleOrder
                 } else {
                     correct[i] = true;
-                    allCorrect = true; // Mark the character as correct
+                    
                 }
             }
         } 
@@ -64,7 +65,7 @@ function revealPassword(temp=false) {
         // If all characters are correct, move on to the next phase
         if (allCorrect) {
 
-            setTimeout(() => checkTempAndContinue(temp), revealDuration); // Check temp after reveal duration
+            setTimeout(revealDuration);
         } else {
 
             setTimeout(revealCharacter, cycleSpeed); // Continue revealing the next character
@@ -75,9 +76,9 @@ function revealPassword(temp=false) {
 }
 
 // Function to scramble the password backward and keep scrambling all previous characters
-function scrambleBackward(temp=false) {
+function scrambleBackward() {
     let scrambledText = password.split(''); // Start with the fully revealed password
-    let index = password.length; // Start scrambling from the last character
+    let index = password.length -1; // Start scrambling from the last character
 
     function scrambleCharacter() {
         if (index >= 0) {
@@ -88,9 +89,9 @@ function scrambleBackward(temp=false) {
             updatePassText(scrambledText.join('')); // Update the display
             index--; // Move to the previous character
 
-            setTimeout(() => checkTempAndContinue(temp), cycleSpeed); // Check temp after each scramble step
+            setTimeout(cycleSpeed);
         } else {
-            checkTempAndContinue(temp); // Check temp after scrambling is complete
+            console.log("this shouldnt really show i dont think");
         }
     }
 
@@ -102,17 +103,9 @@ function getRandomString(length) {
     return Array.from({ length }, getRandomChar).join('');
 }
 
-// Function to check temp and decide whether to continue or call typeAndDeleteEffect()
-function checkTempAndContinue(temp) {
-    if (temp) {
-        typeAndDeleteEffect(); // If temp is true, perform the typing and deleting effect
-    } else {
-        scrambleBackward(temp); // Continue the effect (scrambling backward)
-    }
-}
-
 // Function to type and delete text
 function typeAndDeleteEffect() {
+    
     const cycleSpeed = 100; // Time in milliseconds between each letter, you can adjust this value
     const text1 = "password found";
     const text2 = "to disable this type:";
@@ -175,22 +168,24 @@ function typeAndDeleteEffect() {
 }
 
 // Main function to start the effect
-function startEffect(temp=false) {
+function startEffect(randomisePhase=true) {
+
     let randomPhaseTime = 0;
 
     function randomPhase() {
         var element = document.getElementById("true")
-        if (!temp) {
+        if (randomisePhase) {
+            randomisePhase = false;
             displayRandomText();
             randomPhaseTime += cycleSpeed;
             if (randomPhaseTime >= randomPhaseDuration) {
-                revealPassword(temp); // After 5 seconds, start revealing the password
+                revealPassword(); // After 5 seconds, start revealing the password
             } else {
                 setTimeout(randomPhase, cycleSpeed);
             }
-        } else {
-            console.log("password found");
+        }else {
             typeAndDeleteEffect();
+            randomisePhase = true;
         }
     }
 

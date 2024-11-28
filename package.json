@@ -1,0 +1,19 @@
+{
+  "name": "cmd-portfolio",
+  "version": "1.0.0",
+  "description": "trial-lol",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ffishstix/cmd-portfolio.git"
+  },
+  "author": "fin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ffishstix/cmd-portfolio/issues"
+  },
+  "homepage": "https://github.com/ffishstix/cmd-portfolio#readme"
+}

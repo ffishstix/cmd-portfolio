@@ -43,7 +43,7 @@ https://web.moritz.移动/   disc: wixxer
             <p>full credit goes to <a href="https://projects.bugra.work/console/">bugra.work</a></p>
             <p><br></p>
             <p>C:\Users\fin>ssh guest@fishstix.uk</p>
-            <p class="inline">guest@fishstix.uk's password:</p><p id="true" class="pass inline"></p>
+            <p class="inline">guest@fishstix.uk's password:</p><p class="pass inline"></p>
             <p><br></p>
 			<p id="last-login">Last login:</p>
             <div class="prepend"></div>
@@ -56,41 +56,8 @@ https://web.moritz.移动/   disc: wixxer
             </form>
         </div>
     </div>
+    <script src="./assets/date.js"></script>
     <script src="./assets/base.js"></script>
-
-    <!-- Inline JavaScript -->
-    <script>
-        // Funktion zum Formatieren des Datums
-        function formatDate(date) {
-            const options = { 
-                weekday: 'short', 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric', 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit', 
-                timeZoneName: 'short' 
-            };
-            return date.toLocaleDateString('en-US', options).replace(',', '') + ' from 10.69.42.09';
-        }
-
-        // Funktion zum Aktualisieren der letzten Login-Zeit
-        function updateLoginTime() {
-            const now = new Date();
-            const lastLoginElement = document.querySelector('#last-login');
-            if (lastLoginElement) {
-                lastLoginElement.textContent = `Last login: ${formatDate(now)}`;
-            } else {
-                console.error('Element with id "last-login" not found');
-            }
-        }
-
-        // Beim Laden der Seite die letzte Login-Zeit aktualisieren
-        document.addEventListener('DOMContentLoaded', updateLoginTime);
-    </script>
-
-
 	<script type="module" src="./assets/app.js"></script>
     <script src="./assets/drag.js"></script>
     <script type="module" src="./assets/passScript.js"></script>

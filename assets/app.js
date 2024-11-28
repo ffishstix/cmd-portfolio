@@ -97,8 +97,7 @@ let contact =
         $(".commandline").addClass("rainbow");
         if (element){element.id = " ";};
         console.log("Secret Password was selected");
-        console.log(window.randomPhaseTrue);
-        startEffect(randomPhaseTrue);
+        startEffect();
         break;
       case "password found":
         $(".window-inside").css("color", "");
@@ -107,7 +106,7 @@ let contact =
         $(".commandline").removeClass("rainbow");
         if (element){element.id = "true";}
         console.log("password foundw as selected");
-        startEffect(randomPhaseTrue);
+        startEffect(false);
         break;
       case "very secret password":  
         $(".window-inside").css("color", "transparent");
@@ -116,7 +115,7 @@ let contact =
         $(".commandline").addClass("rainbow");
         console.log("very secret password selected");
         if (element){element.id = " ";}
-        startEffect(randomPhaseTrue);
+        startEffect();
         break;
           
       case "delay 0":
@@ -131,10 +130,11 @@ let contact =
         toggleFullScreen()
         break;
 	  case "secret":
-        prepend.append("<br>>> to find the secret, just write secret + a password like this: 'secret password'");
+        prepend.append("<br>>> to find the secret, just look around, i am sure you can find it :)");
         break;
       default:
         prepend.append(notfound);
+        break;
     }
     bottom();
   }, delay);
