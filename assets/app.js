@@ -97,16 +97,16 @@ let contact =
         $(".commandline").addClass("rainbow");
         if (element){element.id = " ";};
         console.log("Secret Password was selected");
-        startEffect();
+        startEffect(false);
         break;
-      case "password found":
+      case "i dislike rainbows":
         $(".window-inside").css("color", "");
         $(".commandline").css("color", "");
         $(".window-inside").removeClass("rainbow");
         $(".commandline").removeClass("rainbow");
         if (element){element.id = "true";}
         console.log("password foundw as selected");
-        startEffect(false);
+        startEffect(true);
         break;
       case "very secret password":  
         $(".window-inside").css("color", "transparent");
@@ -115,7 +115,7 @@ let contact =
         $(".commandline").addClass("rainbow");
         console.log("very secret password selected");
         if (element){element.id = " ";}
-        startEffect();
+        startEffect(false);
         break;
           
       case "delay 0":

@@ -26,6 +26,7 @@ function getRandomChar() {
 // Function to update the text of elements with class "pass"
 function updatePassText(text) {
     const passElements = document.getElementsByClassName("pass");
+    passElements.fontSize = 12;
     for (let element of passElements) {
         element.textContent = text;
     }
@@ -108,7 +109,7 @@ function typeAndDeleteEffect() {
     const cycleSpeed = 75;
     const text1 = "password found";
     const text2 = "to disable this type:";
-    const text3 = "password found";
+    const text3 = "i dislike rainbows";
     console.log("why am i here");
     let element = document.querySelector('.pass');
 
@@ -189,13 +190,14 @@ function startEffect(randomisePhase=true) {
             typeAndDeleteEffect();
             
         }
+        console.log(randomisePhase);
     }
 
     setTimeout(revealDuration);
     randomPhase();
     console.log('here', count++);
     
-    randomisePhase != randomisePhase;
+    
 }
 
 // Start the effect when the page loads
