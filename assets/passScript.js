@@ -4,7 +4,7 @@ const password = "Secret Password";
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 -_!$%^&*():"; // Added space
 const randomPhaseDuration = 5000; // 5 seconds of random characters
 const revealDuration = 5000; // 5 seconds of showing the full password
-const cycleSpeed = 50; // Milliseconds between each character change during scramble phase
+const cycleSpeed = 150; // Milliseconds between each character change during scramble phase
 
 // Create a random order of characters to cycle through
 const charCycleOrder = chars.split('').sort(() => Math.random() - 0.5); // Randomize char order
@@ -31,15 +31,16 @@ function updatePassText(text) {
 }
 
 // Function to reveal the password one character at a time
-function revealPassword() {
+function revealPassword(randomisePhase) {
     let revealedText = Array(password.length).fill(""); // Empty array for revealed text
     let cycleIndexes = Array(password.length).fill(0); // Current index in charCycleOrder for each character
     let correct = Array(password.length).fill(false); // Array to track which characters are correct
 
-    function revealCharacter() {
+    function revealCharacter(randomisePhase) {
         // Check if all characters have been revealed correctly
         let allCorrect = true;
         for (let i = 0; i < password.length; i++) {
+            if (randomisePhase){
             if (!correct[i]) {
                 let currentChar = charCycleOrder[cycleIndexes[i]];
                 revealedText[i] = currentChar;
@@ -51,7 +52,7 @@ function revealPassword() {
                     correct[i] = true;
                     
                 }
-            }
+            }}else {typeAndDeleteEffect();}
         } 
 
         // Update the display with the revealed characters and random ones
@@ -66,35 +67,46 @@ function revealPassword() {
             setTimeout(revealDuration);
         } else {
 
-            setTimeout(revealCharacter, cycleSpeed); // Continue revealing the next character
+            setTimeout(revealCharacter(randomisePhase), cycleSpeed); // Continue revealing the next character
         }
     }
 
-    revealCharacter(); // Start revealing the password
+    revealCharacter(randomisePhase); // Start revealing the password
 }
 
 // Function to scramble the password backward and keep scrambling all previous characters
+// Function to scramble the password backward progressively
 function scrambleBackward() {
     let scrambledText = password.split(''); // Start with the fully revealed password
-    let index = password.length -1; // Start scrambling from the last character
+    let index = password.length - 1; // Start scrambling from the last character
+    let cycleCount = 1; // Track how many characters should be scrambled at once
 
+    // Function to scramble the characters backward progressively
     function scrambleCharacter() {
         if (index >= 0) {
-            for (let i = index; i < password.length; i++) {
-                scrambledText[i] = getRandomChar(); // Continuously randomize all scrambled characters
+            // Scramble characters starting from the last one and progressively add more
+            for (let i = 0; i < cycleCount; i++) {
+                if (index - i >= 0) { // Ensure we're within the bounds of the password
+                    scrambledText[index - i] = getRandomChar(); // Scramble character at current index
+                }
             }
-            console.log(scrambledText);
-            updatePassText(scrambledText.join('')); // Update the display
-            index--; // Move to the previous character
 
-            setTimeout(cycleSpeed);
+            // Update the display with the progressively scrambled password
+            updatePassText(scrambledText.join(''));
+
+            // Move to the previous characters by incrementing cycleCount
+            cycleCount++; // Increase the number of characters to scramble in the next cycle
+
+            // Continue the scrambling process after a short delay
+            setTimeout(scrambleCharacter, cycleSpeed);
         } else {
-            console.log("this shouldnt really show i dont think");
+            console.log("Scrambling complete!");
         }
     }
 
-    scrambleCharacter(); // Start scrambling the password backward
+    scrambleCharacter(); // Start the progressive scrambling process
 }
+
 
 // Function to generate random characters to fill the rest of the unrevealed characters
 function getRandomString(length) {
@@ -102,19 +114,24 @@ function getRandomString(length) {
 }
 
 // Function to type and delete text
+let isTypingEffectActive = false;  // Flag to check if typing effect is active
+
+// Function to start typing and deleting effect
 function typeAndDeleteEffect() {
-    
+    if (isTypingEffectActive) return;  // Prevent multiple typing effects
+
+    isTypingEffectActive = true;  // Set the flag to true when typing effect starts
+
     const cycleSpeed = 40;
     const text1 = "password found";
     const text2 = "to disable this type:";
     const text3 = "i dislike rainbows";
-    console.log("why am i here");
     let element = document.querySelector('.pass');
 
     // Function to update all elements with the class 'pass'
     function updatePassText(text) {
-            element.style.fontSize = "28px";
-            element.textContent = text;
+        element.style.fontSize = "28px";
+        element.textContent = text;
     }
 
     // Function to type out a string letter by letter
@@ -154,7 +171,7 @@ function typeAndDeleteEffect() {
                 deleteText(text2, function() {
                     typeText(text3, function() {
                         // Final typing is done
-                        console.log("All text typed and deleted.");
+                        isTypingEffectActive = false; // Reset flag after typing is finished
                     });
                 });
             });
@@ -163,42 +180,32 @@ function typeAndDeleteEffect() {
 }
 
 let count = 10;
-function startEffect(randomisePhase=true) {
-    console.log(randomisePhase);
-    console.log("here one");
+function startEffect(randomisePhase = true) {
+    console.log("Start effect with randomisePhase:", randomisePhase);
+
     let randomPhaseTime = 0;
 
     function randomPhase() {
-        console.log("here 2");
-        var element = document.getElementById("true")
-        
-        if (randomisePhase) {
-            console.log("here 3");
-            ;
-            displayRandomText();
+        if (!isTypingEffectActive) {  // Only allow scrambling if typing effect isn't active
+            console.log("Scrambling...");
+            displayRandomText(); // Continuously display scrambled text
             randomPhaseTime += cycleSpeed;
-            if (randomPhaseTime >= randomPhaseDuration) {
-                revealPassword();
-                console.log("here 6");
+    
+            if (randomPhaseTime < randomPhaseDuration) {
+                setTimeout(randomPhase, cycleSpeed); // Continue scrambling
             } else {
-                console.log("here 4");
-                setTimeout(randomPhase(), cycleSpeed);
+                revealPassword(true); // Move to the reveal phase after the scramble time
             }
-        }else {
-            console.log("here 5");
-            typeAndDeleteEffect();
-            
         }
-        console.log(randomisePhase);
     }
 
-    setTimeout(revealDuration);
-    randomPhase();
-    console.log('here', count++);
-    
-    
+    randomPhase(); // Start with the random scramble phase
+
+    setTimeout(() => {
+        revealPassword(randomisePhase); // Move to reveal phase
+    }, randomPhaseDuration);
 }
 
-// Start the effect when the page loads
-startEffect();
+// Example of starting the effect
+startEffect(true);
 export { startEffect };
