@@ -47,16 +47,12 @@ $(document).keydown(function (e) {
       historyIndex--;  // Move to the previous command in history
       $(".commandline").val(commandHistory[commandHistory.length - 1 - historyIndex]);
       
-      // Move the cursor to the end of the input
-      let input = $(".commandline")[0];
-      input.setSelectionRange(input.value.length, input.value.length);
+
     } else if (historyIndex === 0) {
       historyIndex--;  // Reset to no history (empty input)
       $(".commandline").val("");
       
-      // Move the cursor to the end of the input
-      let input = $(".commandline")[0];
-      input.setSelectionRange(input.value.length, input.value.length);
+
     }
   }
   
