@@ -33,7 +33,7 @@ $("#help").click(function () {
 let search = [
   "ls", "about", "help", "hello", "hi", "merhaba", "references", "contact", "homepage", 
   "open blog", "clear", "red", "green", "rainbow", "def", "delay 0", "delay 100", 
-  "delay 500", "delay def", "github", "exit", "fullscreen",
+  "delay 500", "delay def", "github", "exit", "fullscreen", "i dislike rainbows", "secret password", "very secret password"
 ];
 
 $(document).keydown(function (e) {
@@ -100,7 +100,7 @@ $(form).submit(function () {
   form.trigger("reset");
 
   setTimeout(function () {
-    const element = document.getElementById("true");
+    const element = document.querySelector(".pass");
 
     switch (input.toLowerCase()) {
       case "ls":
@@ -141,7 +141,7 @@ $(form).submit(function () {
         $(".commandline").css("color", "");
         $(".window-inside").removeClass("rainbow");
         $(".commandline").removeClass("rainbow");
-        if (element) { element.id = "true"; }
+        if (element) { element.style.fontSize = "28px";}
         console.log("password found was selected");
         startEffect(true);
         break;
@@ -151,7 +151,7 @@ $(form).submit(function () {
         $(".window-inside").addClass("rainbow");
         $(".commandline").addClass("rainbow");
         console.log("very secret password selected");
-        if (element) { element.id = " "; }
+        if (element) {element.style.fontSize = "28px";}
         startEffect(false);
         break;
       case "delay 0":
