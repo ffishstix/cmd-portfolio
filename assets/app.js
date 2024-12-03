@@ -132,7 +132,7 @@ $(form).submit(function () {
         $(".commandline").css("color", "transparent");
         $(".window-inside").addClass("rainbow");
         $(".commandline").addClass("rainbow");
-        if (element) { element.id = " "; }
+        if (element) {element.style.fontSize = "28px";}
         console.log("Secret Password was selected");
         startEffect(false);
         break;
