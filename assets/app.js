@@ -13,6 +13,14 @@ window.randomPhaseTrue = true;
 import { startEffect } from "./passScript.js";
 $("#browser-info").html(navigator.userAgent);
 
+$(".icon").click(function() {
+  tempCount++;
+  if(!(tempCount % 5)) {
+    toggleFullScreen();
+  }
+});
+
+
 function bottom() {
   $(".window").animate({ scrollTop: $(document).height() }, 1);
 }
