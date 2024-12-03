@@ -26,7 +26,7 @@ function getRandomChar() {
 // Function to update the text of elements with class "pass"
 function updatePassText(text) {
     const passElements = document.querySelector(".pass");
-    passElements.fontSize = 12;
+    
     passElements.textContent = text;
 }
 
@@ -130,7 +130,7 @@ function typeAndDeleteEffect() {
 
     // Function to update all elements with the class 'pass'
     function updatePassText(text) {
-        element.style.fontSize = "28px";
+        
         element.textContent = text;
     }
 
